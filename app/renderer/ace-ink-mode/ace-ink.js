@@ -17,7 +17,7 @@ var inkHighlightRules = function() {
         }, {
             include: "#comments"
         }, {
-            regex: /^(\s*)(={2,})(\s*)((?:function)?)(\s*)(\w+)(\s*)(\([\w,\s->]*\))?(\s*)((?:={1,})?)/,
+            regex: /^(\s*)(={2,})(\s*)((?:function)?)(\s*)([^?;.\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*)(\([\w,\s->]*\))?(\s*)((?:={1,})?)/,
             token: [
                 "",
                 "flow.knot.declaration.punctuation",  // ===
@@ -31,7 +31,7 @@ var inkHighlightRules = function() {
                 "flow.knot.declaration.punctuation"   // ====
             ]
         }, {
-            regex: /^(\s*)(=)(\s*)(\w+)(\s*)(\([\w,\s->]*\))?/,
+            regex: /^(\s*)(=)(\s*)([^?;.\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*)(\([\w,\s->]*\))?/,
             token: [
                 "flow.stitch.declaration",             // whitespace
                 "flow.stitch.declaration.punctuation", // =
@@ -52,7 +52,7 @@ var inkHighlightRules = function() {
             ]
         }],
         "#choice": [{
-            regex: /^(\s*)((?:[\*\+]\s?)+)(\s*)(?:(\(\s*)(\w+)(\s*\)))?/,
+            regex: /^(\s*)((?:[\*\+]\s?)+)(\s*)(?:(\(\s*)([^?;.\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*\)))?/,
             token: [
                 "choice",                           // whitespace
                 "choice.bullets",                   // * or +
@@ -138,7 +138,7 @@ var inkHighlightRules = function() {
             ]
         }, {
             // Tunnel onwards
-            regex: /(->->)(\s*)(\w[\w\.\s]*)/,
+            regex: /(->->)(\s*)([^?;\-/:!%*=~#'`^@|()\[\]{}<>-]+)/,
             token: [
                 "divert.to-tunnel",      // ->->
                 "divert",                // whitespace
@@ -146,7 +146,7 @@ var inkHighlightRules = function() {
             ]
         }, {
             // Divert with parameters: -> knot (param, -> param2)
-            regex: /(->|<-)(\s*)(\w[\w\.\s]*?)(\s*)(\()/,
+            regex: /(->|<-)(\s*)([^?;\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*)(\()/,
             token: [
                 "divert.operator",  // ->
                 "divert",           // whitespace
@@ -156,7 +156,7 @@ var inkHighlightRules = function() {
             ],
             push: [{
                 // Divert target, as parameter to the current divert
-                regex: /(->)(\s*)(\w[\w\.\s]*?)(\s*)(?![\w\.])/,
+                regex: /(->)(\s*)([^?;\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*)(?![\w\.])/,
                 token: [
                     "divert.parameter.operator",  // ->
                     "divert.parameter",           // whitespace
@@ -176,7 +176,7 @@ var inkHighlightRules = function() {
             }]
         }, {
             // Vanilla divert
-            regex: /(->|<-)(\s*)(\w[\w\.\s]*?)(\s*)(?![\w\.])/,
+            regex: /(->|<-)(\s*)([^?;\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*)(?![\w\.])/,
             token: [
                 "divert.operator",  // -> | <-
                 "divert",           // whitespace
@@ -225,7 +225,7 @@ var inkHighlightRules = function() {
             }, {
                 include: "#logicLineInsert"
             }, {
-                regex: /(\(\s*)(\w+)(\s*\)\s*)/,
+                regex: /(\(\s*)([^?;.\-/:!%*=~#'`^@|()\[\]{}<>-]+)(\s*\)\s*)/,
                 token: [
                     "gather.label",      // (
                     "gather.label.name", // label_name
